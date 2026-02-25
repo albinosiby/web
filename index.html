@@ -79,8 +79,13 @@
       padding-bottom: 4px;
       border-bottom: 2px solid transparent;
       transition: 0.15s;
+      cursor: pointer;
     }
-    .header-nav a:hover, .header-nav .active-link {
+    .header-nav a:hover {
+      color: #fff;
+      border-bottom-color: #fff;
+    }
+    .header-nav a.active-link {
       color: #fff;
       border-bottom-color: #fff;
     }
@@ -406,9 +411,18 @@
     .footer-nav a {
       color: #c3d6ff;
       text-decoration: none;
+      cursor: pointer;
     }
     .footer-nav a:hover {
       text-decoration: underline;
+    }
+
+    /* Page content sections */
+    .page-section {
+      display: none;
+    }
+    .page-section.active-section {
+      display: block;
     }
 
     /* ========== RESPONSIVE FIXES ========== */
@@ -459,17 +473,58 @@
   <header class="site-header" id="siteHeader"></header>
 
   <main class="main-container">
-    <!-- hero / status (dynamic) -->
-    <div class="hero-area" id="heroArea"></div>
+    <!-- Page Sections -->
+    <div id="updatesSection" class="page-section active-section">
+      <!-- hero / status (dynamic) -->
+      <div class="hero-area" id="heroArea"></div>
 
-    <!-- MAIN DOWNLOAD CARD (dynamic) -->
-    <div class="download-card" id="downloadCard"></div>
+      <!-- MAIN DOWNLOAD CARD (dynamic) -->
+      <div class="download-card" id="downloadCard"></div>
 
-    <!-- two column grid (dynamic) -->
-    <div class="grid-2col" id="infoGrid"></div>
+      <!-- two column grid (dynamic) -->
+      <div class="grid-2col" id="infoGrid"></div>
 
-    <!-- extra content row (dynamic) -->
-    <div class="feature-grid" id="featureGrid"></div>
+      <!-- extra content row (dynamic) -->
+      <div class="feature-grid" id="featureGrid"></div>
+    </div>
+
+    <div id="releasesSection" class="page-section">
+      <div style="text-align: center; padding: 4rem 2rem; background: #181c22; border-radius: 3rem; border: 1px solid #333;">
+        <i class="fas fa-history" style="font-size: 4rem; color: #6a8de0; margin-bottom: 1rem;"></i>
+        <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Release Archive</h2>
+        <p style="color: #bfcbe6; font-size: 1.2rem; max-width: 600px; margin: 0 auto;">
+          Version 2.9.0 (March 2026)<br>
+          Version 2.8.5 (February 2026)<br>
+          Version 2.8.0 (January 2026)<br>
+          <span style="color: #6a8de0; margin-top: 1rem; display: block;">Full changelog available on GitHub</span>
+        </p>
+      </div>
+    </div>
+
+    <div id="supportSection" class="page-section">
+      <div style="text-align: center; padding: 4rem 2rem; background: #181c22; border-radius: 3rem; border: 1px solid #333;">
+        <i class="fas fa-headset" style="font-size: 4rem; color: #6a8de0; margin-bottom: 1rem;"></i>
+        <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Support Center</h2>
+        <p style="color: #bfcbe6; font-size: 1.2rem; margin-bottom: 2rem;">How can we help you?</p>
+        <div style="display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap;">
+          <div style="background: #1b2335; padding: 2rem; border-radius: 2rem; min-width: 250px;">
+            <i class="fas fa-envelope" style="font-size: 2rem; color: #6a8de0;"></i>
+            <h3 style="margin: 1rem 0;">Email</h3>
+            <p style="color: #bfcbe6;">support@kootu.app</p>
+          </div>
+          <div style="background: #1b2335; padding: 2rem; border-radius: 2rem; min-width: 250px;">
+            <i class="fas fa-comment" style="font-size: 2rem; color: #6a8de0;"></i>
+            <h3 style="margin: 1rem 0;">Live Chat</h3>
+            <p style="color: #bfcbe6;">Mon-Fri, 9am-6pm</p>
+          </div>
+          <div style="background: #1b2335; padding: 2rem; border-radius: 2rem; min-width: 250px;">
+            <i class="fas fa-file-alt" style="font-size: 2rem; color: #6a8de0;"></i>
+            <h3 style="margin: 1rem 0;">Documentation</h3>
+            <p style="color: #bfcbe6;">User guides & FAQs</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </main>
 
   <!-- footer (actual website) -->
@@ -477,7 +532,7 @@
     <div class="footer-inner" id="footerInner"></div>
   </footer>
 
-  <!-- FIXED SCRIPT: Now properly initializes after DOM loads -->
+  <!-- FIXED SCRIPT: Now with working navigation -->
   <script>
     // Wrap everything in DOMContentLoaded to ensure elements exist
     document.addEventListener('DOMContentLoaded', function() {
@@ -522,7 +577,7 @@
         ]
       };
 
-      // --- HEADER ---
+      // --- HEADER with navigation that works ---
       const siteHeader = document.getElementById('siteHeader');
       if (siteHeader) {
         siteHeader.innerHTML = `
@@ -531,9 +586,9 @@
             <span class="logo-text">${appData.appName}</span>
           </div>
           <nav class="header-nav">
-            <a href="#" class="active-link">Updates</a>
-            <a href="#">Releases</a>
-            <a href="#">Support</a>
+            <a href="#" class="nav-link active-link" data-page="updates">Updates</a>
+            <a href="#" class="nav-link" data-page="releases">Releases</a>
+            <a href="#" class="nav-link" data-page="support">Support</a>
             <span class="chip"><i class="fas fa-check-circle"></i> v${appData.version}</span>
           </nav>
         `;
@@ -661,12 +716,56 @@
         footerInner.innerHTML = `
           <span>© 2026 Kootu · official build distribution</span>
           <div class="footer-nav">
-            ${appData.footerLinks.map(l => `<a href="${l.href}">${l.icon ? `<i class='fas ${l.icon}'></i> ` : ''}${l.text}</a>`).join('')}
+            ${appData.footerLinks.map(l => `<a href="#" class="footer-link" data-page="${l.text}">${l.icon ? `<i class='fas ${l.icon}'></i> ` : ''}${l.text}</a>`).join('')}
           </div>
         `;
       }
 
-      // --- DOWNLOAD BUTTON HANDLER (now inside DOMContentLoaded) ---
+      // --- NAVIGATION FUNCTIONALITY ---
+      function switchPage(pageName) {
+        // Hide all sections
+        document.querySelectorAll('.page-section').forEach(section => {
+          section.classList.remove('active-section');
+        });
+        
+        // Show selected section
+        const selectedSection = document.getElementById(pageName + 'Section');
+        if (selectedSection) {
+          selectedSection.classList.add('active-section');
+        }
+        
+        // Update active class on nav links
+        document.querySelectorAll('.nav-link').forEach(link => {
+          link.classList.remove('active-link');
+          if (link.dataset.page === pageName) {
+            link.classList.add('active-link');
+          }
+        });
+      }
+
+      // Add click handlers to navigation links
+      document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          const page = this.dataset.page;
+          switchPage(page);
+        });
+      });
+
+      // Add click handlers to footer links
+      document.querySelectorAll('.footer-link').forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          const page = this.dataset.page;
+          // Map footer links to sections
+          if (page === 'terms' || page === 'privacy' || page === 'contact' || page === 'archive') {
+            // You can add specific handling for these
+            console.log('Footer link clicked:', page);
+          }
+        });
+      });
+
+      // --- DOWNLOAD BUTTON HANDLER ---
       const downloadBtn = document.getElementById('downloadMainBtn');
       if (downloadBtn) {
         downloadBtn.addEventListener('click', function(e) {
