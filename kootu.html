@@ -600,7 +600,7 @@
       // In a real implementation, you would serve the APK from your server.
       // For now, the button triggers a download "simulation" or you can set a direct link.
       // ===== REPLACE THE LINE BELOW WITH YOUR ACTUAL APK FILE LOCATION =====
-      const APK_DOWNLOAD_URL = 'https://example.com/kootu-v2.10.0.apk'; // <-- PUT YOUR APK FILE URL HERE (e.g., your server or CDN)
+      const APK_DOWNLOAD_URL = 'https://firebasestorage.googleapis.com/v0/b/dating-e2373.firebasestorage.app/o/apk%2Fkootu.apk?alt=media&token=dddc04a9-c47b-4207-8010-bb79131a0b8c'; // Direct download from Firebase Storage
 
       const downloadBtn = document.getElementById('downloadMainBtn');
       
@@ -626,9 +626,5 @@
     })();
   </script>
 
-  <!-- small developer reminder (will not be visible to users if you remove it) -->
-  <div style="position: fixed; bottom: 10px; left: 10px; background: #192132; color: #b6cbff; padding: 0.4rem 1.2rem; border-radius: 40px; font-size: 0.8rem; border: 1px solid #3f5b90;">
-    <i class="fas fa-pen"></i> dev: set <code style="background:#1f2a45;">APK_DOWNLOAD_URL</code> to your actual APK file
-  </div>
 </body>
 </html>
