@@ -7,7 +7,6 @@
   <!-- Font Awesome 6 (free) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
-    /* Your existing CSS stays exactly the same */
     /* ----- RESET & DARK PROFESSIONAL BASE ----- */
     * {
       margin: 0;
@@ -425,6 +424,344 @@
       display: block;
     }
 
+    /* ========== IMPROVED SUPPORT PAGE STYLES ========== */
+    .support-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .support-header {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding: 2rem;
+      background: linear-gradient(145deg, #1e2a3a, #0f1a24);
+      border-radius: 3rem;
+      border: 1px solid #33445a;
+    }
+
+    .support-header h2 {
+      font-size: 3rem;
+      font-weight: 600;
+      background: linear-gradient(145deg, #ffffff, #8ab2ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 1rem;
+    }
+
+    .support-header p {
+      font-size: 1.3rem;
+      color: #bfd3ff;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .support-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .support-card {
+      background: #121b29;
+      border: 1px solid #2d4059;
+      border-radius: 2.5rem;
+      padding: 2.5rem 2rem;
+      text-align: center;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+
+    .support-card:hover {
+      transform: translateY(-5px);
+      border-color: #6084d0;
+      box-shadow: 0 20px 30px -15px #000;
+    }
+
+    .support-icon {
+      width: 80px;
+      height: 80px;
+      background: #1e2f42;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      border: 2px solid #3d5670;
+    }
+
+    .support-icon i {
+      font-size: 2.5rem;
+      color: #6a8de0;
+    }
+
+    .support-card h3 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      color: #fff;
+    }
+
+    .support-card p {
+      color: #9fb3dc;
+      margin-bottom: 1.5rem;
+      font-size: 1rem;
+    }
+
+    .support-detail {
+      background: #1a2538;
+      padding: 1rem;
+      border-radius: 2rem;
+      margin: 1.5rem 0;
+      font-size: 1.1rem;
+      color: #c9dcff;
+      word-break: break-all;
+    }
+
+    .support-detail i {
+      margin-right: 0.5rem;
+      color: #6084d0;
+    }
+
+    .support-btn {
+      background: #1f3f75;
+      border: 1px solid #6180cb;
+      color: white;
+      font-size: 1.2rem;
+      font-weight: 500;
+      padding: 1rem 2rem;
+      border-radius: 60px;
+      cursor: pointer;
+      transition: 0.2s;
+      width: 100%;
+      max-width: 200px;
+      margin: 0 auto;
+    }
+
+    .support-btn:hover {
+      background: #2d54a3;
+      transform: scale(1.05);
+    }
+
+    /* FAQ Section */
+    .faq-section {
+      background: #121b29;
+      border: 1px solid #2d4059;
+      border-radius: 2.5rem;
+      padding: 2.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .faq-title {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .faq-title i {
+      font-size: 2rem;
+      color: #6a8de0;
+    }
+
+    .faq-title h3 {
+      font-size: 2rem;
+      font-weight: 500;
+    }
+
+    .faq-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .faq-item {
+      background: #1a2538;
+      border-radius: 1.5rem;
+      padding: 1.5rem;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .faq-item:hover {
+      background: #22304a;
+    }
+
+    .faq-question {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 500;
+      font-size: 1.1rem;
+    }
+
+    .faq-question i {
+      color: #6a8de0;
+      transition: transform 0.2s;
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      color: #9fb3dc;
+      margin-top: 0;
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 200px;
+      margin-top: 1rem;
+    }
+
+    .faq-item.active .faq-question i {
+      transform: rotate(180deg);
+    }
+
+    /* Contact Form */
+    .contact-form {
+      background: #121b29;
+      border: 1px solid #2d4059;
+      border-radius: 2.5rem;
+      padding: 2.5rem;
+    }
+
+    .form-title {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .form-title i {
+      font-size: 2rem;
+      color: #6a8de0;
+    }
+
+    .form-title h3 {
+      font-size: 2rem;
+      font-weight: 500;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 1.2rem 1.5rem;
+      background: #1a2538;
+      border: 1px solid #31486a;
+      border-radius: 60px;
+      color: #fff;
+      font-size: 1rem;
+      font-family: inherit;
+      transition: 0.2s;
+    }
+
+    .form-group textarea {
+      border-radius: 30px;
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: #6a8de0;
+      box-shadow: 0 0 0 3px rgba(106, 141, 224, 0.2);
+    }
+
+    .form-group select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236a8de0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1.5rem center;
+      background-size: 16px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .submit-btn {
+      background: linear-gradient(145deg, #264882, #14305c);
+      border: 1px solid #6180cb;
+      color: white;
+      font-size: 1.3rem;
+      font-weight: 600;
+      padding: 1.2rem 3rem;
+      border-radius: 60px;
+      cursor: pointer;
+      transition: 0.2s;
+      width: 100%;
+      max-width: 300px;
+      margin: 1rem auto 0;
+      display: block;
+    }
+
+    .submit-btn:hover {
+      background: #2d54a3;
+      transform: scale(1.02);
+    }
+
+    .success-message {
+      background: #1a3a2a;
+      border: 1px solid #2a8c5e;
+      border-radius: 60px;
+      padding: 1rem;
+      color: #8fffbc;
+      text-align: center;
+      margin-top: 1rem;
+      display: none;
+    }
+
+    .success-message.show {
+      display: block;
+    }
+
+    /* Status indicators */
+    .status-online {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #1a3a2a;
+      border: 1px solid #2a8c5e;
+      border-radius: 40px;
+      padding: 0.3rem 1rem;
+      font-size: 0.9rem;
+      color: #8fffbc;
+    }
+
+    .status-offline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #3a2a2a;
+      border: 1px solid #8c5e5e;
+      border-radius: 40px;
+      padding: 0.3rem 1rem;
+      font-size: 0.9rem;
+      color: #ffbcbc;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+
+    .status-dot.online {
+      background: #2a8c5e;
+      box-shadow: 0 0 10px #2a8c5e;
+    }
+
+    .status-dot.offline {
+      background: #8c5e5e;
+    }
+
     /* ========== RESPONSIVE FIXES ========== */
     @media (max-width: 900px) {
       .site-header { padding: 0.8rem 1.5rem; }
@@ -433,6 +770,9 @@
       .download-header h2 { font-size: 1.8rem; }
       .version-number { font-size: 2rem; }
       .btn-download { font-size: 1.6rem; padding: 1rem 2.5rem; }
+      
+      .support-header h2 { font-size: 2.5rem; }
+      .support-card { padding: 2rem 1.5rem; }
     }
 
     @media (max-width: 800px) {
@@ -444,6 +784,9 @@
       .download-header h2 { font-size: 1.6rem; }
       .file-info { border-radius: 40px; gap: 1rem; }
       .meta-strip { gap: 1.2rem; }
+      
+      .support-header h2 { font-size: 2rem; }
+      .form-row { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 600px) {
@@ -457,6 +800,19 @@
       .info-panel { padding: 1.5rem; }
       .panel-title { font-size: 1.4rem; }
       .footer-inner { flex-direction: column; text-align: center; }
+      
+      .support-header { padding: 1.5rem; }
+      .support-header h2 { font-size: 1.8rem; }
+      .support-header p { font-size: 1rem; }
+      .support-card { padding: 1.5rem; }
+      .support-icon { width: 60px; height: 60px; }
+      .support-icon i { font-size: 2rem; }
+      .support-card h3 { font-size: 1.5rem; }
+      .faq-section { padding: 1.5rem; }
+      .faq-title h3 { font-size: 1.5rem; }
+      .contact-form { padding: 1.5rem; }
+      .form-title h3 { font-size: 1.5rem; }
+      .submit-btn { font-size: 1.1rem; padding: 1rem 2rem; }
     }
 
     @media (max-width: 400px) {
@@ -464,6 +820,9 @@
       .hero-left h1 { font-size: 2rem; }
       .download-header i { font-size: 2rem; }
       .version-number { font-size: 1.7rem; }
+      
+      .support-grid { grid-template-columns: 1fr; }
+      .faq-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -502,26 +861,158 @@
     </div>
 
     <div id="supportSection" class="page-section">
-      <div style="text-align: center; padding: 4rem 2rem; background: #181c22; border-radius: 3rem; border: 1px solid #333;">
-        <i class="fas fa-headset" style="font-size: 4rem; color: #6a8de0; margin-bottom: 1rem;"></i>
-        <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Support Center</h2>
-        <p style="color: #bfcbe6; font-size: 1.2rem; margin-bottom: 2rem;">How can we help you?</p>
-        <div style="display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap;">
-          <div style="background: #1b2335; padding: 2rem; border-radius: 2rem; min-width: 250px;">
-            <i class="fas fa-envelope" style="font-size: 2rem; color: #6a8de0;"></i>
-            <h3 style="margin: 1rem 0;">Email</h3>
-            <p style="color: #bfcbe6;">support@kootu.app</p>
+      <div class="support-container">
+        <!-- Support Header -->
+        <div class="support-header">
+          <h2><i class="fas fa-headset"></i> Support Center</h2>
+          <p>We're here to help you 24/7. Choose how you'd like to get support.</p>
+        </div>
+
+        <!-- Support Grid -->
+        <div class="support-grid">
+          <!-- Live Chat Card -->
+          <div class="support-card">
+            <div class="support-icon">
+              <i class="fas fa-comment-dots"></i>
+            </div>
+            <h3>Live Chat</h3>
+            <p>Chat with our support team in real-time</p>
+            <div class="support-detail">
+              <span class="status-online">
+                <span class="status-dot online"></span>
+                Online - Reply in 2 min
+              </span>
+            </div>
+            <button class="support-btn" onclick="startLiveChat()">
+              <i class="fas fa-comment"></i> Start Chat
+            </button>
           </div>
-          <div style="background: #1b2335; padding: 2rem; border-radius: 2rem; min-width: 250px;">
-            <i class="fas fa-comment" style="font-size: 2rem; color: #6a8de0;"></i>
-            <h3 style="margin: 1rem 0;">Live Chat</h3>
-            <p style="color: #bfcbe6;">Mon-Fri, 9am-6pm</p>
+
+          <!-- Email Support Card -->
+          <div class="support-card">
+            <div class="support-icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <h3>Email Support</h3>
+            <p>Get a response within 24 hours</p>
+            <div class="support-detail">
+              <i class="fas fa-envelope"></i> support@kootu.app
+            </div>
+            <button class="support-btn" onclick="copyEmail()">
+              <i class="fas fa-copy"></i> Copy Email
+            </button>
           </div>
-          <div style="background: #1b2335; padding: 2rem; border-radius: 2rem; min-width: 250px;">
-            <i class="fas fa-file-alt" style="font-size: 2rem; color: #6a8de0;"></i>
-            <h3 style="margin: 1rem 0;">Documentation</h3>
-            <p style="color: #bfcbe6;">User guides & FAQs</p>
+
+          <!-- Community Card -->
+          <div class="support-card">
+            <div class="support-icon">
+              <i class="fas fa-users"></i>
+            </div>
+            <h3>Community</h3>
+            <p>Join our community forum</p>
+            <div class="support-detail">
+              <i class="fas fa-users"></i> 5,000+ members
+            </div>
+            <button class="support-btn" onclick="window.open('#', '_blank')">
+              <i class="fas fa-external-link-alt"></i> Join Community
+            </button>
           </div>
+
+          <!-- FAQ Card -->
+          <div class="support-card">
+            <div class="support-icon">
+              <i class="fas fa-question-circle"></i>
+            </div>
+            <h3>FAQ</h3>
+            <p>Find answers to common questions</p>
+            <div class="support-detail">
+              <i class="fas fa-file-alt"></i> 20+ articles
+            </div>
+            <button class="support-btn" onclick="scrollToFAQ()">
+              <i class="fas fa-arrow-down"></i> View FAQs
+            </button>
+          </div>
+
+          <!-- Bug Report Card -->
+          <div class="support-card">
+            <div class="support-icon">
+              <i class="fas fa-bug"></i>
+            </div>
+            <h3>Report Bug</h3>
+            <p>Help us improve by reporting issues</p>
+            <div class="support-detail">
+              <i class="fas fa-exclamation-triangle"></i> Priority support
+            </div>
+            <button class="support-btn" onclick="reportBug()">
+              <i class="fas fa-bug"></i> Report
+            </button>
+          </div>
+
+          <!-- Documentation Card -->
+          <div class="support-card">
+            <div class="support-icon">
+              <i class="fas fa-book"></i>
+            </div>
+            <h3>Documentation</h3>
+            <p>User guides and API documentation</p>
+            <div class="support-detail">
+              <i class="fas fa-file-pdf"></i> PDF guides available
+            </div>
+            <button class="support-btn" onclick="window.open('#', '_blank')">
+              <i class="fas fa-external-link-alt"></i> Read Docs
+            </button>
+          </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="faq-section" id="faqSection">
+          <div class="faq-title">
+            <i class="fas fa-question-circle"></i>
+            <h3>Frequently Asked Questions</h3>
+          </div>
+          <div class="faq-grid" id="faqGrid">
+            <!-- FAQs will be populated by JavaScript -->
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="contact-form">
+          <div class="form-title">
+            <i class="fas fa-paper-plane"></i>
+            <h3>Send us a message</h3>
+          </div>
+          <form id="supportForm" onsubmit="submitSupportForm(event)">
+            <div class="form-row">
+              <div class="form-group">
+                <input type="text" placeholder="Your Name" required>
+              </div>
+              <div class="form-group">
+                <input type="email" placeholder="Your Email" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <select required>
+                <option value="" disabled selected>Select Support Topic</option>
+                <option>Technical Issue</option>
+                <option>Account Problem</option>
+                <option>Billing Question</option>
+                <option>Feature Request</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <textarea placeholder="Describe your issue in detail..." required></textarea>
+            </div>
+            <div class="form-group">
+              <input type="text" placeholder="App Version (optional)">
+            </div>
+            <button type="submit" class="submit-btn">
+              <i class="fas fa-paper-plane"></i> Send Message
+            </button>
+            <div class="success-message" id="successMessage">
+              <i class="fas fa-check-circle"></i> Message sent successfully! We'll respond within 24 hours.
+            </div>
+          </form>
         </div>
       </div>
     </div>
@@ -532,7 +1023,6 @@
     <div class="footer-inner" id="footerInner"></div>
   </footer>
 
-  <!-- FIXED SCRIPT: Now with working navigation -->
   <script>
     // Wrap everything in DOMContentLoaded to ensure elements exist
     document.addEventListener('DOMContentLoaded', function() {
@@ -549,7 +1039,7 @@
         arch: "arm64-v8a, armeabi-v7a",
         signature: "release · SHA-256",
         playProtect: true,
-        downloadUrl: "https://firebasestorage.googleapis.com/v0/b/dating-e2373.appspot.com/o/apk%2Fkootu.apk?alt=media&token=dddc04a9-c47b-4207-8010-bb79131a0b8c",
+        downloadUrl: "https://firebasestorage.googleapis.com/v0/b/dating-e2373.firebasestorage.app/o/apk%2Fkootu.apk?alt=media&token=dddc04a9-c47b-4207-8010-bb79131a0b8c",
         checksum: "3B:8E:...:A1",
         meta: [
           { icon: "fa-code-branch", text: "version 2.10.0" },
@@ -574,6 +1064,24 @@
           { text: "privacy", href: "#" },
           { text: "contact", href: "#" },
           { text: "archive", href: "#" }
+        ],
+        faqs: [
+          {
+            question: "How do I update the app?",
+            answer: "Download the latest APK from our Updates page and install it. Your data will be preserved."
+          },
+          {
+            question: "Is the app free?",
+            answer: "Yes, Kootu is completely free with no hidden charges. Some premium features may be added in the future."
+          },
+          {
+            question: "How do I report a bug?",
+            answer: "Use the bug report card above or email us at bugs@kootu.app with details about the issue."
+          },
+          {
+            question: "Why is the app not installing?",
+            answer: "Make sure you've enabled 'Install from unknown sources' in your device settings."
+          }
         ]
       };
 
@@ -721,6 +1229,22 @@
         `;
       }
 
+      // --- POPULATE FAQS ---
+      const faqGrid = document.getElementById('faqGrid');
+      if (faqGrid) {
+        faqGrid.innerHTML = appData.faqs.map((faq, index) => `
+          <div class="faq-item" onclick="toggleFAQ(this)">
+            <div class="faq-question">
+              ${faq.question}
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              ${faq.answer}
+            </div>
+          </div>
+        `).join('');
+      }
+
       // --- NAVIGATION FUNCTIONALITY ---
       function switchPage(pageName) {
         // Hide all sections
@@ -757,10 +1281,8 @@
         link.addEventListener('click', function(e) {
           e.preventDefault();
           const page = this.dataset.page;
-          // Map footer links to sections
-          if (page === 'terms' || page === 'privacy' || page === 'contact' || page === 'archive') {
-            // You can add specific handling for these
-            console.log('Footer link clicked:', page);
+          if (page === 'contact') {
+            switchPage('support');
           }
         });
       });
@@ -778,6 +1300,41 @@
         });
       }
     });
+
+    // Global support functions
+    function startLiveChat() {
+      alert('Live chat would open here. Our team is ready to help!');
+    }
+
+    function copyEmail() {
+      navigator.clipboard.writeText('support@kootu.app').then(() => {
+        alert('Email copied to clipboard!');
+      });
+    }
+
+    function toggleFAQ(element) {
+      element.classList.toggle('active');
+    }
+
+    function scrollToFAQ() {
+      document.getElementById('faqSection').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function reportBug() {
+      alert('Bug report form would open. Please describe the issue you encountered.');
+    }
+
+    function submitSupportForm(event) {
+      event.preventDefault();
+      const successMsg = document.getElementById('successMessage');
+      successMsg.classList.add('show');
+      
+      // Reset form after 3 seconds
+      setTimeout(() => {
+        event.target.reset();
+        successMsg.classList.remove('show');
+      }, 3000);
+    }
   </script>
 
 </body>
