@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kootu · official app updates</title>
+  <!-- Font Awesome 6 (free) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* ----- RESET & DARK PROFESSIONAL BASE ----- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #000;
+      background: radial-gradient(circle at 30% 20%, #23272e 0%, #000 100%);
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      color: #fff;
+      line-height: 1.5;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ----- HEADER (actual website navigation) ----- */
+    .site-header {
+      background: #11131a;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid #222;
+      padding: 0.8rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      position: sticky;
+      top: 0;
+      z-index: 40;
+    }
+    .logo-group {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .logo-icon {
+      background: #181c22;
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: #fff;
+      border: 1px solid #333;
+    }
+    .logo-text {
+      font-weight: 600;
+      font-size: 1.9rem;
+      letter-spacing: -0.5px;
+      color: #fff;
+    }
+    .header-nav {
+      display: flex;
+      gap: 2.2rem;
+      align-items: center;
+    }
+    .header-nav a {
+      color: #e0e6f0;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1.05rem;
+      padding-bottom: 4px;
+      border-bottom: 2px solid transparent;
+      transition: 0.15s;
+    }
+    .header-nav a:hover, .header-nav .active-link {
+      color: #fff;
+      border-bottom-color: #fff;
+    }
+    .chip {
+      background: #181c22;
+      border: 1px solid #333;
+      border-radius: 40px;
+      padding: 0.3rem 1.2rem;
+      font-size: 0.9rem;
+      color: #fff;
+    }
+
+    /* ----- MAIN CONTAINER ----- */
+    .main-container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 2.5rem 2rem 3rem;
+      width: 100%;
+      flex: 1;
+    }
+
+    /* hero */
+    .hero-area {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 3.5rem;
+    }
+    .hero-left h1 {
+      font-size: 3.2rem;
+      font-weight: 600;
+      background: linear-gradient(145deg, #ffffff, #c6d9ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.2;
+    }
+    .hero-left p {
+      font-size: 1.2rem;
+      color: #bfcbe6;
+      margin-top: 0.5rem;
+    }
+    .live-badge {
+      background: #181c22;
+      border-radius: 60px;
+      padding: 0.8rem 2rem;
+      border: 1px solid #333;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #fff;
+    }
+    .dot {
+      width: 12px;
+      height: 12px;
+      background: #3dcf6b;
+      border-radius: 50%;
+      box-shadow: 0 0 15px #3dcf6b;
+    }
+
+    /* ----- CORE DOWNLOAD CARD (NO DRIVE MENTION) ----- */
+    .download-card {
+      background: #181c22;
+      border: 1px solid #333;
+      border-radius: 3rem;
+      padding: 2.5rem 2.8rem;
+      box-shadow: 0 30px 50px -25px #000;
+      margin-bottom: 3rem;
+    }
+
+    .download-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .download-header i {
+      font-size: 2.5rem;
+      color: #6a8de0;
+    }
+    .download-header h2 {
+      font-size: 2.2rem;
+      font-weight: 500;
+      color: #ebf3ff;
+    }
+
+    .version-row {
+      background: #1b2335;
+      border-radius: 3rem;
+      padding: 1.6rem 2.2rem;
+      margin-bottom: 2.2rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      border: 1px solid #384664;
+    }
+    .version-tag {
+      display: flex;
+      flex-direction: column;
+    }
+    .version-number {
+      font-size: 2.5rem;
+      font-weight: 600;
+      letter-spacing: -1px;
+      line-height: 1.2;
+    }
+    .version-details {
+      color: #a5bae2;
+      font-size: 1rem;
+    }
+    .build-badge {
+      background: #26334f;
+      padding: 0.6rem 1.8rem;
+      border-radius: 60px;
+      border: 1px solid #546e9b;
+      font-size: 1rem;
+    }
+
+    /* --- APK download block (direct, no drive mention) --- */
+    .apk-download-box {
+      background: #101827;
+      border-radius: 2.5rem;
+      padding: 2rem 2.2rem;
+      border: 1px solid #31415e;
+      margin: 2rem 0 2rem;
+    }
+    .apk-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 1.2rem;
+      color: #bfd3ff;
+      font-size: 1.2rem;
+    }
+    .apk-label i {
+      color: #edb176;
+    }
+    .file-info {
+      background: #1c253b;
+      border-radius: 60px;
+      padding: 0.8rem 1.8rem;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin-bottom: 2rem;
+      border: 1px solid #3d5177;
+    }
+    .file-info span {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #c9dcff;
+    }
+    .file-info i {
+      color: #6084d0;
+      width: 22px;
+    }
+
+    /* main CTA — download button (internal style) */
+    .download-action {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .btn-download {
+      background: #1f3f75;
+      background: linear-gradient(145deg, #264882, #14305c);
+      border: 1px solid #6180cb;
+      color: white;
+      font-size: 2rem;
+      font-weight: 600;
+      padding: 1.3rem 3.5rem;
+      border-radius: 80px;
+      display: inline-flex;
+      align-items: center;
+      gap: 20px;
+      cursor: pointer;
+      box-shadow: 0 15px 25px -10px #0f2645;
+      transition: 0.2s;
+    }
+    .btn-download i {
+      font-size: 2.3rem;
+    }
+    .btn-download:hover {
+      background: #2d54a3;
+      border-color: #90b0ff;
+      transform: scale(1.02);
+    }
+    .checksum {
+      color: #95abd9;
+      font-size: 0.95rem;
+    }
+    .checksum i {
+      margin-right: 6px;
+      color: #50855c;
+    }
+
+    /* additional meta (more content) */
+    .meta-strip {
+      display: flex;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+      background: #1a2335;
+      border-radius: 60px;
+      padding: 1rem 2rem;
+      margin-top: 1.5rem;
+      border: 1px solid #374664;
+    }
+
+    /* ----- TWO COLUMN (changelog + build info) more content ----- */
+    .grid-2col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin: 2.8rem 0;
+    }
+    .info-panel {
+      background: #121b29;
+      border: 1px solid #2b384f;
+      border-radius: 2.5rem;
+      padding: 2rem 2rem;
+    }
+    .panel-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 1.6rem;
+      font-weight: 500;
+      margin-bottom: 1.8rem;
+      border-bottom: 1px solid #2d3e5b;
+      padding-bottom: 0.7rem;
+    }
+    .panel-title i {
+      color: #6084d0;
+    }
+    .change-item {
+      display: flex;
+      gap: 14px;
+      margin-bottom: 1.2rem;
+      align-items: flex-start;
+    }
+    .change-item i {
+      color: #3e9e64;
+      font-size: 1.1rem;
+      margin-top: 3px;
+    }
+    .spec-row {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px dashed #2b3853;
+      padding: 0.8rem 0;
+    }
+    .spec-label {
+      color: #9aafd4;
+    }
+    .spec-value {
+      font-weight: 500;
+      color: #e1edff;
+    }
+    .badge-small {
+      background: #25324b;
+      border-radius: 40px;
+      padding: 0.2rem 1rem;
+      font-size: 0.8rem;
+      color: #bdd1ff;
+    }
+
+    /* feature grid (extra content) */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.8rem;
+      margin: 2rem 0 2.5rem;
+    }
+    .feature {
+      background: #111a27;
+      border: 1px solid #293850;
+      border-radius: 2rem;
+      padding: 1.6rem 1.5rem;
+    }
+    .feature i {
+      font-size: 2rem;
+      color: #6989d4;
+      margin-bottom: 1rem;
+    }
+    .feature h3 {
+      font-weight: 500;
+      margin-bottom: 0.2rem;
+    }
+    .feature p {
+      color: #9fb3dc;
+      font-size: 0.95rem;
+    }
+
+    /* footer */
+    .site-footer {
+      background: #0c121e;
+      border-top: 1px solid #232f45;
+      padding: 2rem 2rem 1.5rem;
+      margin-top: 1.5rem;
+    }
+    .footer-inner {
+      max-width: 1300px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      color: #9aafe0;
+    }
+    .footer-nav {
+      display: flex;
+      gap: 2rem;
+    }
+    .footer-nav a {
+      color: #c3d6ff;
+      text-decoration: none;
+    }
+    .footer-nav a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 800px) {
+      .grid-2col { grid-template-columns: 1fr; }
+      .feature-grid { grid-template-columns: 1fr; }
+      .hero-left h1 { font-size: 2.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- header – professional website navigation (no drive mention) -->
+  <header class="site-header">
+    <div class="logo-group">
+      <div class="logo-icon"><i class="fas fa-heart"></i></div>
+      <span class="logo-text">kootu</span>
+    </div>
+    <div class="header-nav">
+      <a href="#" class="active-link">updates</a>
+      <a href="#">releases</a>
+      <a href="#">safety</a>
+      <a href="#">guide</a>
+      <span class="chip"><i class="fas fa-code-branch"></i> v2.10.0</span>
+    </div>
+  </header>
+
+  <main class="main-container">
+    <!-- hero / status (actual website vibe) -->
+    <div class="hero-area">
+      <div class="hero-left">
+        <h1>Kootu app updates</h1>
+        <p>Official builds • signed APK • direct download</p>
+      </div>
+      <div class="live-badge">
+        <span class="dot"></span>
+        <span><i class="fas fa-check-circle"></i> live: production channel</span>
+      </div>
+    </div>
+
+    <!-- MAIN DOWNLOAD CARD – no google drive mention, just direct apk -->
+    <div class="download-card">
+      <div class="download-header">
+        <i class="fas fa-download"></i>
+        <h2>Download latest version</h2>
+      </div>
+
+      <!-- version info -->
+      <div class="version-row">
+        <div class="version-tag">
+          <span class="version-number">Kootu v2.10.0</span>
+          <span class="version-details">build 3002 · 64-bit · universal</span>
+        </div>
+        <div class="build-badge">
+          <i class="far fa-calendar-alt"></i> 2026-03-01
+        </div>
+      </div>
+
+      <!-- APK block: completely independent, no drive mention -->
+      <div class="apk-download-box">
+        <div class="apk-label">
+          <i class="fas fa-file-archive"></i> <span>release APK (signed)</span>
+        </div>
+
+        <!-- file details -->
+        <div class="file-info">
+          <span><i class="fas fa-file"></i> kootu-v2.10.0.apk</span>
+          <span><i class="fas fa-weight-hanging"></i> 44.8 MB</span>
+          <span><i class="fas fa-android"></i> API 26+</span>
+          <span><i class="fas fa-shield-alt"></i> verified</span>
+        </div>
+
+        <!-- DOWNLOAD BUTTON – this is where the apk would be served.
+             We'll use a javascript action that simulates download or redirect.
+             In a real website you'd point to your actual APK file.
+             For now it triggers a dummy "download started" message.
+             You can replace the URL with your APK location.
+        -->
+        <div class="download-action">
+          <button class="btn-download" id="downloadMainBtn">
+            <i class="fas fa-download"></i> Download APK
+          </button>
+          <div class="checksum">
+            <i class="fas fa-fingerprint"></i> SHA-256: 3B:8E:...:A1
+          </div>
+        </div>
+
+        <!-- additional meta strip (more content) -->
+        <div class="meta-strip">
+          <span><i class="fas fa-code-branch"></i> version 2.10.0</span>
+          <span><i class="fas fa-shield"></i> release key</span>
+          <span><i class="fas fa-cloud-download-alt"></i> direct link</span>
+          <span><i class="fas fa-clock"></i> updated 2h ago</span>
+        </div>
+      </div>
+
+      <p style="color:#a1b7e6; margin-top: 1rem; font-size:0.95rem;">
+        <i class="fas fa-check-circle" style="color:#4aae6c;"></i> No external storage — downloaded directly from our server.
+      </p>
+    </div>
+
+    <!-- two column grid with changelog and build specs (more content) -->
+    <div class="grid-2col">
+      <!-- left: changelog -->
+      <div class="info-panel">
+        <div class="panel-title">
+          <i class="fas fa-clipboard-list"></i> <span>What's new</span>
+        </div>
+        <div class="change-item">
+          <i class="fas fa-check-circle"></i> <span><strong>Smart match 2.0</strong> – better preferences & filters</span>
+        </div>
+        <div class="change-item">
+          <i class="fas fa-check-circle"></i> <span>Chat performance: 35% faster media load</span>
+        </div>
+        <div class="change-item">
+          <i class="fas fa-check-circle"></i> <span>Privacy: invisible mode (stealth browsing)</span>
+        </div>
+        <div class="change-item">
+          <i class="fas fa-check-circle"></i> <span>Crash fix: Android 14 photo picker</span>
+        </div>
+        <div class="change-item">
+          <i class="fas fa-check-circle"></i> <span>Security patches & target SDK 35</span>
+        </div>
+        <div style="margin-top:1.5rem; background:#1c263b; border-radius:40px; padding:0.5rem 1.2rem; text-align:center; font-size:0.9rem;">
+          <i class="fas fa-history"></i> full changelog on <a href="#" style="color:#b6ceff;">releases page</a>
+        </div>
+      </div>
+
+      <!-- right: build details / requirements (more content) -->
+      <div class="info-panel">
+        <div class="panel-title">
+          <i class="fas fa-microchip"></i> <span>Build details</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">version code</span>
+          <span class="spec-value">3002</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">minimum Android</span>
+          <span class="spec-value">8.0 (API 26)</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">architectures</span>
+          <span class="spec-value">arm64-v8a, armeabi-v7a</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">signature</span>
+          <span class="spec-value">release · SHA-256</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">play protect</span>
+          <span class="spec-value">verified <i class="fas fa-check-circle" style="color:#489d62;"></i></span>
+        </div>
+        <div style="margin-top:1.5rem; background:#1b2539; border-radius:30px; padding:0.9rem 1.2rem;">
+          <i class="fas fa-archive"></i> previous builds: v2.9.x available in archive
+        </div>
+      </div>
+    </div>
+
+    <!-- extra content row (more website like) -->
+    <div class="feature-grid">
+      <div class="feature">
+        <i class="fas fa-rotate"></i>
+        <h3>Weekly updates</h3>
+        <p>New production build every Tuesday. Always check the version.</p>
+      </div>
+      <div class="feature">
+        <i class="fas fa-shield-halved"></i>
+        <h3>Signed & safe</h3>
+        <p>All APKs signed with the same release key. Verify integrity.</p>
+      </div>
+      <div class="feature">
+        <i class="fas fa-headset"></i>
+        <h3>Support</h3>
+        <p>Questions? Visit our help center or community forum.</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- footer (actual website) -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <span>© 2026 Kootu · official build distribution</span>
+      <div class="footer-nav">
+        <a href="#"><i class="fas fa-scroll"></i> terms</a>
+        <a href="#">privacy</a>
+        <a href="#">contact</a>
+        <a href="#">archive</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- simple script to handle download (you can replace URL with your actual apk file) -->
+  <script>
+    (function() {
+      // In a real implementation, you would serve the APK from your server.
+      // For now, the button triggers a download "simulation" or you can set a direct link.
+      // ===== REPLACE THE LINE BELOW WITH YOUR ACTUAL APK FILE LOCATION =====
+      const APK_DOWNLOAD_URL = 'https://example.com/kootu-v2.10.0.apk'; // <-- PUT YOUR APK FILE URL HERE (e.g., your server or CDN)
+
+      const downloadBtn = document.getElementById('downloadMainBtn');
+      
+      if (downloadBtn) {
+        downloadBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          // Option 1: redirect to the APK file (triggers download)
+          if (APK_DOWNLOAD_URL !== 'https://example.com/kootu-v2.10.0.apk') {
+            window.location.href = APK_DOWNLOAD_URL;
+          } else {
+            // fallback for demo: show a message that the link needs to be set
+            alert('⚠️ Developer: set the actual APK URL in the APK_DOWNLOAD_URL variable.\n\nIn a real website, this button would start your APK download.');
+          }
+          // visual feedback
+          downloadBtn.style.background = '#2d54a3';
+          setTimeout(() => {
+            downloadBtn.style.background = 'linear-gradient(145deg, #264882, #14305c)';
+          }, 200);
+        });
+      }
+
+      // also we can make file info interactive if needed
+    })();
+  </script>
+
+  <!-- small developer reminder (will not be visible to users if you remove it) -->
+  <div style="position: fixed; bottom: 10px; left: 10px; background: #192132; color: #b6cbff; padding: 0.4rem 1.2rem; border-radius: 40px; font-size: 0.8rem; border: 1px solid #3f5b90;">
+    <i class="fas fa-pen"></i> dev: set <code style="background:#1f2a45;">APK_DOWNLOAD_URL</code> to your actual APK file
+  </div>
+</body>
+</html>
