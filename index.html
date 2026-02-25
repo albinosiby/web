@@ -7,6 +7,7 @@
   <!-- Font Awesome 6 (free) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
+    /* Your existing CSS stays exactly the same */
     /* ----- RESET & DARK PROFESSIONAL BASE ----- */
     * {
       margin: 0;
@@ -476,183 +477,206 @@
     <div class="footer-inner" id="footerInner"></div>
   </footer>
 
-  <!-- simple script to handle download (you can replace URL with your actual apk file) -->
+  <!-- FIXED SCRIPT: Now properly initializes after DOM loads -->
   <script>
-    // --- DYNAMIC DATA OBJECT ---
-    const appData = {
-      appName: "kootu",
-      version: "2.10.0",
-      versionCode: 3002,
-      buildDate: "2026-03-01",
-      apkName: "kootu.apk",
-      apkSize: "44.8 MB",
-      minApi: 26,
-      arch: "arm64-v8a, armeabi-v7a",
-      signature: "release · SHA-256",
-      playProtect: true,
-      downloadUrl: "https://firebasestorage.googleapis.com/v0/b/dating-e2373.appspot.com/o/apk%2Fkootu.apk?alt=media&token=dddc04a9-c47b-4207-8010-bb79131a0b8c",
-      checksum: "3B:8E:...:A1",
-      meta: [
-        { icon: "fa-code-branch", text: "version 2.10.0" },
-        { icon: "fa-shield", text: "release key" },
-        { icon: "fa-cloud-download-alt", text: "direct link (no Google Drive)" },
-        { icon: "fa-clock", text: "updated 2h ago" }
-      ],
-      changelog: [
-        { icon: "fa-check-circle", text: "<strong>Smart match 2.0</strong> – better preferences & filters" },
-        { icon: "fa-check-circle", text: "Chat performance: 35% faster media load" },
-        { icon: "fa-check-circle", text: "Privacy: invisible mode (stealth browsing)" },
-        { icon: "fa-check-circle", text: "Crash fix: Android 14 photo picker" },
-        { icon: "fa-check-circle", text: "Security patches & target SDK 35" }
-      ],
-      features: [
-        { icon: "fa-rotate", title: "Weekly updates", desc: "New production build every Tuesday. Always check the version." },
-        { icon: "fa-shield-halved", title: "Signed & safe", desc: "All APKs signed with the same release key. Verify integrity." },
-        { icon: "fa-headset", title: "Support", desc: "Questions? Visit our help center or community forum." }
-      ],
-      footerLinks: [
-        { icon: "fa-scroll", text: "terms", href: "#" },
-        { text: "privacy", href: "#" },
-        { text: "contact", href: "#" },
-        { text: "archive", href: "#" }
-      ]
-    };
+    // Wrap everything in DOMContentLoaded to ensure elements exist
+    document.addEventListener('DOMContentLoaded', function() {
+      
+      // --- DYNAMIC DATA OBJECT ---
+      const appData = {
+        appName: "kootu",
+        version: "2.10.0",
+        versionCode: 3002,
+        buildDate: "2026-03-01",
+        apkName: "kootu.apk",
+        apkSize: "44.8 MB",
+        minApi: 26,
+        arch: "arm64-v8a, armeabi-v7a",
+        signature: "release · SHA-256",
+        playProtect: true,
+        downloadUrl: "https://firebasestorage.googleapis.com/v0/b/dating-e2373.appspot.com/o/apk%2Fkootu.apk?alt=media&token=dddc04a9-c47b-4207-8010-bb79131a0b8c",
+        checksum: "3B:8E:...:A1",
+        meta: [
+          { icon: "fa-code-branch", text: "version 2.10.0" },
+          { icon: "fa-shield", text: "release key" },
+          { icon: "fa-cloud-download-alt", text: "direct link (no Google Drive)" },
+          { icon: "fa-clock", text: "updated 2h ago" }
+        ],
+        changelog: [
+          { icon: "fa-check-circle", text: "<strong>Smart match 2.0</strong> – better preferences & filters" },
+          { icon: "fa-check-circle", text: "Chat performance: 35% faster media load" },
+          { icon: "fa-check-circle", text: "Privacy: invisible mode (stealth browsing)" },
+          { icon: "fa-check-circle", text: "Crash fix: Android 14 photo picker" },
+          { icon: "fa-check-circle", text: "Security patches & target SDK 35" }
+        ],
+        features: [
+          { icon: "fa-rotate", title: "Weekly updates", desc: "New production build every Tuesday. Always check the version." },
+          { icon: "fa-shield-halved", title: "Signed & safe", desc: "All APKs signed with the same release key. Verify integrity." },
+          { icon: "fa-headset", title: "Support", desc: "Questions? Visit our help center or community forum." }
+        ],
+        footerLinks: [
+          { icon: "fa-scroll", text: "terms", href: "#" },
+          { text: "privacy", href: "#" },
+          { text: "contact", href: "#" },
+          { text: "archive", href: "#" }
+        ]
+      };
 
-    // --- HEADER ---
-    document.getElementById('siteHeader').innerHTML = `
-      <div class="logo-group">
-        <div class="logo-icon"><i class="fas fa-heart"></i></div>
-        <span class="logo-text">${appData.appName}</span>
-      </div>
-      <nav class="header-nav">
-        <a href="#" class="active-link">Updates</a>
-        <a href="#">Releases</a>
-        <a href="#">Support</a>
-        <span class="chip"><i class="fas fa-check-circle"></i> v${appData.version}</span>
-      </nav>
-    `;
-
-    // --- HERO ---
-    document.getElementById('heroArea').innerHTML = `
-      <div class="hero-left">
-        <h1>${appData.appName.charAt(0).toUpperCase() + appData.appName.slice(1)} app updates</h1>
-        <p>Official builds • signed APK • direct download</p>
-      </div>
-      <div class="live-badge">
-        <span class="dot"></span>
-        <span><i class="fas fa-check-circle"></i> live: production channel</span>
-      </div>
-    `;
-
-    // --- DOWNLOAD CARD ---
-    document.getElementById('downloadCard').innerHTML = `
-      <div class="download-header">
-        <i class="fas fa-download"></i>
-        <h2>Download latest version</h2>
-      </div>
-      <div class="version-row">
-        <div class="version-tag">
-          <span class="version-number">Kootu v${appData.version}</span>
-          <span class="version-details">build ${appData.versionCode} · 64-bit · universal</span>
-        </div>
-        <div class="build-badge">
-          <i class="far fa-calendar-alt"></i> ${appData.buildDate}
-        </div>
-      </div>
-      <div class="apk-download-box">
-        <div class="apk-label">
-          <i class="fas fa-file-archive"></i> <span>release APK (signed, direct download only — no Google Drive)</span>
-        </div>
-        <div class="file-info">
-          <span><i class="fas fa-file"></i> ${appData.apkName}</span>
-          <span><i class="fas fa-weight-hanging"></i> ${appData.apkSize}</span>
-          <span><i class="fas fa-android"></i> API ${appData.minApi}+</span>
-          <span><i class="fas fa-shield-alt"></i> verified</span>
-        </div>
-        <div class="download-action">
-          <button class="btn-download" id="downloadMainBtn">
-            <i class="fas fa-download"></i> Download APK
-          </button>
-          <div class="checksum">
-            <i class="fas fa-fingerprint"></i> SHA-256: ${appData.checksum}
+      // --- HEADER ---
+      const siteHeader = document.getElementById('siteHeader');
+      if (siteHeader) {
+        siteHeader.innerHTML = `
+          <div class="logo-group">
+            <div class="logo-icon"><i class="fas fa-heart"></i></div>
+            <span class="logo-text">${appData.appName}</span>
           </div>
-        </div>
-        <div class="meta-strip">
-          ${appData.meta.map(m => `<span><i class="fas ${m.icon}"></i> ${m.text}</span>`).join('')}
-        </div>
-      </div>
-      <p style="color:#a1b7e6; margin-top: 1rem; font-size:0.95rem;">
-        <i class="fas fa-check-circle" style="color:#4aae6c;"></i> No Google Drive or external storage — downloaded directly from our server.
-      </p>
-    `;
+          <nav class="header-nav">
+            <a href="#" class="active-link">Updates</a>
+            <a href="#">Releases</a>
+            <a href="#">Support</a>
+            <span class="chip"><i class="fas fa-check-circle"></i> v${appData.version}</span>
+          </nav>
+        `;
+      }
 
-    // --- INFO GRID (changelog + build details) ---
-    document.getElementById('infoGrid').innerHTML = `
-      <div class="info-panel">
-        <div class="panel-title">
-          <i class="fas fa-clipboard-list"></i> <span>What's new</span>
-        </div>
-        ${appData.changelog.map(c => `<div class="change-item"><i class="fas ${c.icon}"></i> <span>${c.text}</span></div>`).join('')}
-        <div style="margin-top:1.5rem; background:#1c263b; border-radius:40px; padding:0.5rem 1.2rem; text-align:center; font-size:0.9rem;">
-          <i class="fas fa-history"></i> full changelog on <a href="#" style="color:#b6ceff;">releases page</a>
-        </div>
-      </div>
-      <div class="info-panel">
-        <div class="panel-title">
-          <i class="fas fa-microchip"></i> <span>Build details</span>
-        </div>
-        <div class="spec-row">
-          <span class="spec-label">version code</span>
-          <span class="spec-value">${appData.versionCode}</span>
-        </div>
-        <div class="spec-row">
-          <span class="spec-label">minimum Android</span>
-          <span class="spec-value">8.0 (API ${appData.minApi})</span>
-        </div>
-        <div class="spec-row">
-          <span class="spec-label">architectures</span>
-          <span class="spec-value">${appData.arch}</span>
-        </div>
-        <div class="spec-row">
-          <span class="spec-label">signature</span>
-          <span class="spec-value">${appData.signature}</span>
-        </div>
-        <div class="spec-row">
-          <span class="spec-label">play protect</span>
-          <span class="spec-value">${appData.playProtect ? 'verified <i class="fas fa-check-circle" style="color:#489d62;"></i>' : 'not verified'}</span>
-        </div>
-        <div style="margin-top:1.5rem; background:#1b2539; border-radius:30px; padding:0.9rem 1.2rem;">
-          <i class="fas fa-archive"></i> previous builds: v2.9.x available in archive
-        </div>
-      </div>
-    `;
+      // --- HERO ---
+      const heroArea = document.getElementById('heroArea');
+      if (heroArea) {
+        heroArea.innerHTML = `
+          <div class="hero-left">
+            <h1>${appData.appName.charAt(0).toUpperCase() + appData.appName.slice(1)} app updates</h1>
+            <p>Official builds • signed APK • direct download</p>
+          </div>
+          <div class="live-badge">
+            <span class="dot"></span>
+            <span><i class="fas fa-check-circle"></i> live: production channel</span>
+          </div>
+        `;
+      }
 
-    // --- FEATURE GRID ---
-    document.getElementById('featureGrid').innerHTML = appData.features.map(f => `
-      <div class="feature">
-        <i class="fas ${f.icon}"></i>
-        <h3>${f.title}</h3>
-        <p>${f.desc}</p>
-      </div>
-    `).join('');
+      // --- DOWNLOAD CARD ---
+      const downloadCard = document.getElementById('downloadCard');
+      if (downloadCard) {
+        downloadCard.innerHTML = `
+          <div class="download-header">
+            <i class="fas fa-download"></i>
+            <h2>Download latest version</h2>
+          </div>
+          <div class="version-row">
+            <div class="version-tag">
+              <span class="version-number">Kootu v${appData.version}</span>
+              <span class="version-details">build ${appData.versionCode} · 64-bit · universal</span>
+            </div>
+            <div class="build-badge">
+              <i class="far fa-calendar-alt"></i> ${appData.buildDate}
+            </div>
+          </div>
+          <div class="apk-download-box">
+            <div class="apk-label">
+              <i class="fas fa-file-archive"></i> <span>release APK (signed, direct download only — no Google Drive)</span>
+            </div>
+            <div class="file-info">
+              <span><i class="fas fa-file"></i> ${appData.apkName}</span>
+              <span><i class="fas fa-weight-hanging"></i> ${appData.apkSize}</span>
+              <span><i class="fas fa-android"></i> API ${appData.minApi}+</span>
+              <span><i class="fas fa-shield-alt"></i> verified</span>
+            </div>
+            <div class="download-action">
+              <button class="btn-download" id="downloadMainBtn">
+                <i class="fas fa-download"></i> Download APK
+              </button>
+              <div class="checksum">
+                <i class="fas fa-fingerprint"></i> SHA-256: ${appData.checksum}
+              </div>
+            </div>
+            <div class="meta-strip">
+              ${appData.meta.map(m => `<span><i class="fas ${m.icon}"></i> ${m.text}</span>`).join('')}
+            </div>
+          </div>
+          <p style="color:#a1b7e6; margin-top: 1rem; font-size:0.95rem;">
+            <i class="fas fa-check-circle" style="color:#4aae6c;"></i> No Google Drive or external storage — downloaded directly from our server.
+          </p>
+        `;
+      }
 
-    // --- FOOTER ---
-    document.getElementById('footerInner').innerHTML = `
-      <span>© 2026 Kootu · official build distribution</span>
-      <div class="footer-nav">
-        ${appData.footerLinks.map(l => `<a href="${l.href}">${l.icon ? `<i class='fas ${l.icon}'></i> ` : ''}${l.text}</a>`).join('')}
-      </div>
-    `;
+      // --- INFO GRID (changelog + build details) ---
+      const infoGrid = document.getElementById('infoGrid');
+      if (infoGrid) {
+        infoGrid.innerHTML = `
+          <div class="info-panel">
+            <div class="panel-title">
+              <i class="fas fa-clipboard-list"></i> <span>What's new</span>
+            </div>
+            ${appData.changelog.map(c => `<div class="change-item"><i class="fas ${c.icon}"></i> <span>${c.text}</span></div>`).join('')}
+            <div style="margin-top:1.5rem; background:#1c263b; border-radius:40px; padding:0.5rem 1.2rem; text-align:center; font-size:0.9rem;">
+              <i class="fas fa-history"></i> full changelog on <a href="#" style="color:#b6ceff;">releases page</a>
+            </div>
+          </div>
+          <div class="info-panel">
+            <div class="panel-title">
+              <i class="fas fa-microchip"></i> <span>Build details</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">version code</span>
+              <span class="spec-value">${appData.versionCode}</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">minimum Android</span>
+              <span class="spec-value">8.0 (API ${appData.minApi})</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">architectures</span>
+              <span class="spec-value">${appData.arch}</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">signature</span>
+              <span class="spec-value">${appData.signature}</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">play protect</span>
+              <span class="spec-value">${appData.playProtect ? 'verified <i class="fas fa-check-circle" style="color:#489d62;"></i>' : 'not verified'}</span>
+            </div>
+            <div style="margin-top:1.5rem; background:#1b2539; border-radius:30px; padding:0.9rem 1.2rem;">
+              <i class="fas fa-archive"></i> previous builds: v2.9.x available in archive
+            </div>
+          </div>
+        `;
+      }
 
-    // --- DOWNLOAD BUTTON HANDLER ---
-    document.addEventListener('click', function(e) {
-      if (e.target && e.target.id === 'downloadMainBtn') {
-        e.preventDefault();
-        window.location.href = appData.downloadUrl;
-        e.target.style.background = '#2d54a3';
-        setTimeout(() => {
-          e.target.style.background = 'linear-gradient(145deg, #264882, #14305c)';
-        }, 200);
+      // --- FEATURE GRID ---
+      const featureGrid = document.getElementById('featureGrid');
+      if (featureGrid) {
+        featureGrid.innerHTML = appData.features.map(f => `
+          <div class="feature">
+            <i class="fas ${f.icon}"></i>
+            <h3>${f.title}</h3>
+            <p>${f.desc}</p>
+          </div>
+        `).join('');
+      }
+
+      // --- FOOTER ---
+      const footerInner = document.getElementById('footerInner');
+      if (footerInner) {
+        footerInner.innerHTML = `
+          <span>© 2026 Kootu · official build distribution</span>
+          <div class="footer-nav">
+            ${appData.footerLinks.map(l => `<a href="${l.href}">${l.icon ? `<i class='fas ${l.icon}'></i> ` : ''}${l.text}</a>`).join('')}
+          </div>
+        `;
+      }
+
+      // --- DOWNLOAD BUTTON HANDLER (now inside DOMContentLoaded) ---
+      const downloadBtn = document.getElementById('downloadMainBtn');
+      if (downloadBtn) {
+        downloadBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          window.location.href = appData.downloadUrl;
+          this.style.background = '#2d54a3';
+          setTimeout(() => {
+            this.style.background = 'linear-gradient(145deg, #264882, #14305c)';
+          }, 200);
+        });
       }
     });
   </script>
